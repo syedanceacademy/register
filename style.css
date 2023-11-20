@@ -16,7 +16,7 @@ body {
 
 .container {
     width: 80vw;
-    height: 98vh;
+    height: 136vh;
     display: grid;
     grid-template-columns: 100%;
     grid-template-areas: "login";
