@@ -45,16 +45,11 @@
             </div>
             <div class="text-input correct">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 22q-.825 0-1.413-.588T4 20V4q0-.825.588-1.413T6 2h12q.825 0 1.413.588T20 4v16q0 .825-.588 1.413T18 22H6Zm0-2h12V4h-2v7l-2.5-1.5L11 11V4H6v16Zm0 0V4v16Zm5-9l2.5-1.5L16 11l-2.5-1.5L11 11Z"/></svg>
-                <select  style="opacity: 0.4;" name = "course">
+                <select id = "cour" style="opacity: 0.4;" name = "course">
                     <option>Select Course</option>
-                    <option >Classical</option>
-                    <option >Western</option>
-                    <option>Hip Hop</option>
-                    <option>Dandiya</option>
-                    <option>Zumba</option>
-                    <option>Salsa</option>
-                    <option>Folk</option>
-                    <option>Aerobics</option>
+                    <option value="classical">Classical</option>
+                    <option value="western">Western</option>
+                    <option value="zumba">Zumba</option>
             </select>
             </div>
             <div class="text-input correct">
@@ -95,9 +90,12 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20q-.825 0-1.413-.588T2 18V6q0-.825.588-1.413T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.588 1.413T20 20H4Zm8-7l8-5V6l-8 5l-8-5v2l8 5Z"/></svg>
                 <input style ="margin-left: 21px;" type="email" placeholder="Email address" id="email" name = "email">
             </div>
-            <button class="login-btn click" >REGISTER</button>
-        </form>
-
+            <div class="text-input">
+                <svg width="30px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 4H10.5M10.5 4C12.9853 4 15 6.01472 15 8.5C15 10.9853 12.9853 13 10.5 13H6L13 20M10.5 4H18M6 8.5H18" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                <input type="text" id = "price" placeholder="Fees">
+            </div>
         <div
         id="message"
         style="
@@ -111,14 +109,15 @@
           border-color: aquamarine;
         "
       ></div>
+      <img style="margin-left: 20px;" src="qr.jpg" alt="" width="180px" >
+        
             <div class="text-input">
-                <svg width="30px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 4H10.5M10.5 4C12.9853 4 15 6.01472 15 8.5C15 10.9853 12.9853 13 10.5 13H6L13 20M10.5 4H18M6 8.5H18" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                <input type="text" id = "price" placeholder="Fees">
+                <i class="ri-lock-fill"></i>
+                <input style ="margin-left: 21px;" type="text" placeholder="Transaction-id" id="transactionid" name = "transactionid">
             </div>
-            <h4>Pay Fees At The Time Of Joining</h4>
-            <h4>Cash or Online</h4>
+            <button class="login-btn click" >REGISTER</button>
+        </form>
+
            
             <div class="create">
             </div>
@@ -131,25 +130,51 @@
         const form = document.forms['product']
       
         form.addEventListener('submit', e => {
+            if((document.getElementById("transactionid").value)[0] == 'T'){
           e.preventDefault()
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => alert("Thank you! your form is submitted successfully." ))
             .then(() => {  window.location.reload(); })
             .catch(error => console.error('Error!', error.message))
+            }
+            else{
+              
+                e.preventDefault()
+                alert("Please Complete Payment and enter valid transaction id")
+            }
         })
      
 
 function Pay(){
+    let course = document.getElementById("cour").value;
 let valuepr = document.getElementById("fees").value;
  
-if (valuepr == 1){
+if (valuepr == 1 && course =="western"){
     document.getElementById("price").value = "1200₹";
 }
-if (valuepr == 3){
+if (valuepr == 3 &&course =="western"){
     document.getElementById("price").value= "3000₹";
 }
-if (valuepr == 6){
-    document.getElementById("price").value = "5000₹";
+if (valuepr == 6 && course =="western"){
+    document.getElementById("price").value = "5500₹";
+}
+if (valuepr == 1 && course =="classical"){
+    document.getElementById("price").value = "1200₹";
+}
+if (valuepr == 3 &&course =="classical"){
+    document.getElementById("price").value= "3000₹";
+}
+if (valuepr == 6 && course =="classical"){
+    document.getElementById("price").value = "5500₹";
+}
+if (valuepr == 1 && course =="zumba"){
+    document.getElementById("price").value = "1500₹";
+}
+if (valuepr == 3 &&course =="zumba"){
+    document.getElementById("price").value= "4000₹";
+}
+if (valuepr == 6 && course =="zumba"){
+    document.getElementById("price").value = "7500₹";
 }
 }
 
